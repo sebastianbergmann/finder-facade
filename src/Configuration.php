@@ -48,8 +48,10 @@ namespace SebastianBergmann\FinderFacade
     /**
      * <code>
      * <fileset>
-     *   <directory>/path/to/directory</directory>
-     *   <file>/path/to/file</file>
+     *   <include>
+     *    <directory>/path/to/directory</directory>
+     *    <file>/path/to/file</file>
+     *   </include>
      *   <exclude>/path/to/directory</exclude>
      *   <name>*.php</name>
      * </fileset>
@@ -95,11 +97,11 @@ namespace SebastianBergmann\FinderFacade
               'items' => array(), 'excludes' => array(), 'names' => array()
             );
 
-            foreach ($this->xml->getDOMXPath()->query($xpath . 'directory') as $item) {
+            foreach ($this->xml->getDOMXPath()->query($xpath . 'include/directory') as $item) {
                 $result['items'][] = $this->toAbsolutePath($item->nodeValue);
             }
 
-            foreach ($this->xml->getDOMXPath()->query($xpath . 'file') as $item) {
+            foreach ($this->xml->getDOMXPath()->query($xpath . 'include/file') as $item) {
                 $result['items'][] = $this->toAbsolutePath($item->nodeValue);
             }
 

@@ -1,6 +1,8 @@
 <fileset>
- <directory>foo</directory>
- <file>bar.phtml</file>
+ <include>
+  <directory>foo</directory>
+  <file>bar.phtml</file>
+ </include>
  <exclude>bar</exclude>
  <name>*.php</name>
 </fileset>
