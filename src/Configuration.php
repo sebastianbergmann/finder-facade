@@ -51,7 +51,7 @@ namespace SebastianBergmann\FinderFacade
      *   <directory>/path/to/directory</directory>
      *   <file>/path/to/file</file>
      *   <exclude>/path/to/directory</exclude>
-     *   <pattern>*.php</pattern>
+     *   <name>*.php</name>
      * </fileset>
      * </code>
      *
@@ -92,7 +92,7 @@ namespace SebastianBergmann\FinderFacade
         public function parse($xpath = '')
         {
             $result = array(
-              'items' => array(), 'excludes' => array(), 'patterns' => array()
+              'items' => array(), 'excludes' => array(), 'names' => array()
             );
 
             foreach ($this->xml->getDOMXPath()->query($xpath . 'directory') as $item) {
@@ -107,8 +107,8 @@ namespace SebastianBergmann\FinderFacade
                 $result['excludes'][] = $exclude->nodeValue;
             }
 
-            foreach ($this->xml->getDOMXPath()->query($xpath . 'pattern') as $pattern) {
-                $result['patterns'][] = $pattern->nodeValue;
+            foreach ($this->xml->getDOMXPath()->query($xpath . 'name') as $name) {
+                $result['names'][] = $name->nodeValue;
             }
 
             return $result;

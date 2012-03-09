@@ -70,18 +70,18 @@ namespace SebastianBergmann\FinderFacade
         /**
          * @var array
          */
-        protected $patterns = array();
+        protected $names = array();
 
         /**
          * @param array $items
          * @param array $excludes
-         * @param array $patterns
+         * @param array $names
          */
-        public function __construct(array $items = array(), array $excludes = array(), array $patterns = array())
+        public function __construct(array $items = array(), array $excludes = array(), array $names = array())
         {
             $this->items    = $items;
             $this->excludes = $excludes;
-            $this->patterns = $patterns;
+            $this->names    = $names;
         }
 
         /**
@@ -108,8 +108,8 @@ namespace SebastianBergmann\FinderFacade
                 $finder->exclude($exclude);
             }
 
-            foreach ($this->patterns as $pattern) {
-                $finder->name($pattern);
+            foreach ($this->names as $name) {
+                $finder->name($name);
             }
 
             if ($iterate) {
@@ -131,7 +131,7 @@ namespace SebastianBergmann\FinderFacade
 
             $this->items    = $configuration['items'];
             $this->excludes = $configuration['excludes'];
-            $this->patterns = $configuration['patterns'];
+            $this->names    = $configuration['names'];
         }
     }
 }

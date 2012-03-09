@@ -70,7 +70,7 @@ namespace SebastianBergmann\FinderFacade\Tests
                   $this->fixtureDir . 'bar.phtml'
                 ),
                 'excludes' => array('bar'),
-                'patterns' => array('*.php')
+                'names' => array('*.php')
               ),
               $configuration->parse()
             );
