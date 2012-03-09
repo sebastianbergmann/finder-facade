@@ -55,6 +55,27 @@ namespace SebastianBergmann\FinderFacade\Tests
         }
 
         /**
+         * @covers SebastianBergmann\FinderFacade\FinderFacade::__construct
+         * @covers SebastianBergmann\FinderFacade\FinderFacade::findFiles
+         */
+        public function testFilesCanBeFoundBasedOnConstructorArguments()
+        {
+            $facade = new FinderFacade(
+              array($this->fixtureDir, $this->fixtureDir . 'bar.phtml'),
+              array('bar'),
+              array('*.php')
+            );
+
+            $this->assertEquals(
+              array(
+                $this->fixtureDir . 'bar.phtml',
+                $this->fixtureDir . 'foo' . DIRECTORY_SEPARATOR . 'bar.php'
+              ),
+              $facade->findFiles()
+            );
+        }
+
+        /**
          * @covers SebastianBergmann\FinderFacade\FinderFacade::loadConfiguration
          */
         public function testFilesCanBeFoundBasedOnXmlConfiguration()
