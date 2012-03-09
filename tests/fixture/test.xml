@@ -1,0 +1,6 @@
+<fileset>
+ <directory>foo</directory>
+ <file>bar.phtml</file>
+ <exclude>bar</exclude>
+ <pattern>*.php</pattern>
+</fileset>

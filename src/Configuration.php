@@ -1,0 +1,138 @@
+<?php
+/**
+ * FinderFacade
+ *
+ * Copyright (c) 2012, Sebastian Bergmann <sb@sebastian-bergmann.de>.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *   * Redistributions of source code must retain the above copyright
+ *     notice, this list of conditions and the following disclaimer.
+ *
+ *   * Redistributions in binary form must reproduce the above copyright
+ *     notice, this list of conditions and the following disclaimer in
+ *     the documentation and/or other materials provided with the
+ *     distribution.
+ *
+ *   * Neither the name of Sebastian Bergmann nor the names of his
+ *     contributors may be used to endorse or promote products derived
+ *     from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * @package   FinderFacade
+ * @author    Sebastian Bergmann <sb@sebastian-bergmann.de>
+ * @copyright 2012 Sebastian Bergmann <sb@sebastian-bergmann.de>
+ * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @since     File available since Release 1.0.0
+ */
+
+namespace SebastianBergmann\FinderFacade
+{
+    use TheSeer\fDOM\fDOMDocument;
+
+    /**
+     * <code>
+     * <fileset>
+     *   <directory>/path/to/directory</directory>
+     *   <file>/path/to/file</file>
+     *   <exclude>/path/to/directory</exclude>
+     *   <pattern>*.php</pattern>
+     * </fileset>
+     * </code>
+     *
+     * @author    Sebastian Bergmann <sb@sebastian-bergmann.de>
+     * @copyright 2012 Sebastian Bergmann <sb@sebastian-bergmann.de>
+     * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+     * @version   Release: @package_version@
+     * @link      http://github.com/sebastianbergmann/finder-facade/tree
+     * @since     Class available since Release 1.0.0
+     */
+    class Configuration
+    {
+        /**
+         * @var string
+         */
+        protected $basePath;
+
+        /**
+         * @var fDOMDocument
+         */
+        protected $xml;
+
+        /**
+         * @param string $file
+         */
+        public function __construct($file)
+        {
+            $this->basePath = dirname($file);
+
+            $this->xml = new fDOMDocument;
+            $this->xml->load($file);
+        }
+
+        /**
+         * @param  string $xpath
+         * @return array
+         */
+        public function parse($xpath = '')
+        {
+            $result = array(
+              'items' => array(), 'excludes' => array(), 'patterns' => array()
+            );
+
+            foreach ($this->xml->getDOMXPath()->query($xpath . 'directory') as $item) {
+                $result['items'][] = $this->toAbsolutePath($item->nodeValue);
+            }
+
+            foreach ($this->xml->getDOMXPath()->query($xpath . 'file') as $item) {
+                $result['items'][] = $this->toAbsolutePath($item->nodeValue);
+            }
+
+            foreach ($this->xml->getDOMXPath()->query($xpath . 'exclude') as $exclude) {
+                $result['excludes'][] = $exclude->nodeValue;
+            }
+
+            foreach ($this->xml->getDOMXPath()->query($xpath . 'pattern') as $pattern) {
+                $result['patterns'][] = $pattern->nodeValue;
+            }
+
+            return $result;
+        }
+
+        /**
+         * @param  string $path
+         * @return string
+         */
+        protected function toAbsolutePath($path)
+        {
+            // Check whether the path is already absolute.
+            if ($path[0] === '/' || $path[0] === '\\' ||
+                (strlen($path) > 3 && ctype_alpha($path[0]) &&
+                 $path[1] === ':' && ($path[2] === '\\' || $path[2] === '/'))) {
+                return $path;
+            }
+
+            // Check whether a stream is used.
+            if (strpos($path, '://') !== FALSE) {
+                return $path;
+            }
+
+            return $this->basePath . DIRECTORY_SEPARATOR . $path;
+        }
+    }
+}
