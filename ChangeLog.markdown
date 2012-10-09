@@ -3,6 +3,11 @@ FinderFacade 1.0
 
 This is the list of changes for the FinderFacade 1.0 release series.
 
+FinderFacade 1.0.5
+------------------
+
+* Added missing dependency information for fDOMDocument.
+
 FinderFacade 1.0.1
 ------------------
 
