@@ -1,5 +1,5 @@
 {
-    "name": "phploc/finder-facade",
+    "name": "sebastian/finder-facade",
     "description": "FinderFacade is a convenience wrapper for Symfony's Finder component.",
     "homepage": "https://github.com/sebastianbergmann/finder-facade",
     "license": "BSD-3-Clause",
