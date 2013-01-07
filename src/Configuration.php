@@ -2,7 +2,7 @@
 /**
  * FinderFacade
  *
- * Copyright (c) 2012, Sebastian Bergmann <sb@sebastian-bergmann.de>.
+ * Copyright (c) 2012, Sebastian Bergmann <sebastian@phpunit.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,8 +35,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @package   FinderFacade
- * @author    Sebastian Bergmann <sb@sebastian-bergmann.de>
- * @copyright 2012 Sebastian Bergmann <sb@sebastian-bergmann.de>
+ * @author    Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright 2012 Sebastian Bergmann <sebastian@phpunit.de>
  * @license   http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @since     File available since Release 1.0.0
  */
@@ -57,8 +57,8 @@ namespace SebastianBergmann\FinderFacade
      * </fileset>
      * </code>
      *
-     * @author    Sebastian Bergmann <sb@sebastian-bergmann.de>
-     * @copyright 2012 Sebastian Bergmann <sb@sebastian-bergmann.de>
+     * @author    Sebastian Bergmann <sebastian@phpunit.de>
+     * @copyright 2012 Sebastian Bergmann <sebastian@phpunit.de>
      * @license   http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
      * @version   Release: @package_version@
      * @link      http://github.com/sebastianbergmann/finder-facade/tree
