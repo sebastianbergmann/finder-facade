@@ -2,7 +2,7 @@
 /**
  * FinderFacade
  *
- * Copyright (c) 2012, Sebastian Bergmann <sebastian@phpunit.de>.
+ * Copyright (c) 2012-2013, Sebastian Bergmann <sebastian@phpunit.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,7 +36,7 @@
  *
  * @package   FinderFacade
  * @author    Sebastian Bergmann <sebastian@phpunit.de>
- * @copyright 2012 Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright 2012-2013 Sebastian Bergmann <sebastian@phpunit.de>
  * @license   http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @since     File available since Release 1.0.0
  */
