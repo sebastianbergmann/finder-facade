@@ -41,15 +41,7 @@
  * @since     File available since Release 1.0.0
  */
 
-require_once 'Symfony/Component/Finder/Finder.php';
-require_once 'Symfony/Component/Finder/Glob.php';
-require_once 'Symfony/Component/Finder/Iterator/FilterIterator.php';
-require_once 'Symfony/Component/Finder/Iterator/FileTypeFilterIterator.php';
-require_once 'Symfony/Component/Finder/Iterator/MultiplePcreFilterIterator.php';
-require_once 'Symfony/Component/Finder/Iterator/FilenameFilterIterator.php';
-require_once 'Symfony/Component/Finder/Iterator/RecursiveDirectoryIterator.php';
-require_once 'Symfony/Component/Finder/Iterator/ExcludeDirectoryFilterIterator.php';
-require_once 'Symfony/Component/Finder/SplFileInfo.php';
+require_once 'Symfony/Component/Finder/autoloader.php';
 require_once 'TheSeer/fDOMDocument/autoload.php';
 
 // @codingStandardsIgnoreFile

@@ -1,7 +1,7 @@
 FinderFacade
 ============
 
-**FinderFacade** is a convenience wrapper for Symfony's [Finder](http://symfony.com/doc/2.0/components/finder.html) component.
+**FinderFacade** is a convenience wrapper for Symfony's [Finder](http://symfony.com/doc/2.2/components/finder.html) component.
 
 Installation
 ------------
