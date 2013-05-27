@@ -3,6 +3,16 @@ FinderFacade 1.0
 
 This is the list of changes for the FinderFacade 1.0 release series.
 
+FinderFacade 1.0.7
+------------------
+
+* No changes.
+
+FinderFacade 1.0.6
+------------------
+
+* No changes.
+
 FinderFacade 1.0.5
 ------------------
 
