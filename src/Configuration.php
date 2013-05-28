@@ -94,7 +94,7 @@ namespace SebastianBergmann\FinderFacade
         public function parse($xpath = '')
         {
             $result = array(
-              'items' => array(), 'excludes' => array(), 'names' => array()
+              'items' => array(), 'excludes' => array(), 'names' => array(), 'excluded_names' => array()
             );
 
             foreach ($this->xml->getDOMXPath()->query($xpath . 'include/directory') as $item) {
@@ -111,6 +111,10 @@ namespace SebastianBergmann\FinderFacade
 
             foreach ($this->xml->getDOMXPath()->query($xpath . 'name') as $name) {
                 $result['names'][] = $name->nodeValue;
+            }
+
+            foreach ($this->xml->getDOMXPath()->query($xpath . 'excluded_name') as $name) {
+                $result['excluded_names'][] = $name->nodeValue;
             }
 
             return $result;
