@@ -63,7 +63,8 @@ namespace SebastianBergmann\FinderFacade\Tests
             $facade = new FinderFacade(
               array($this->fixtureDir, $this->fixtureDir . 'bar.phtml'),
               array('bar'),
-              array('*.php')
+              array('*.php'),
+              array('*.fail.php')
             );
 
             $this->assertEquals(
