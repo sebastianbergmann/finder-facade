@@ -76,19 +76,20 @@ namespace SebastianBergmann\FinderFacade
         /**
          * @var array
          */
-        protected $excluded_names = array();
+        protected $notNames = array();
 
         /**
          * @param array $items
          * @param array $excludes
          * @param array $names
+         * @param array $notNames
          */
-        public function __construct(array $items = array(), array $excludes = array(), array $names = array(), array $excluded_names = array())
+        public function __construct(array $items = array(), array $excludes = array(), array $names = array(), array $notNames = array())
         {
             $this->items    = $items;
             $this->excludes = $excludes;
             $this->names    = $names;
-            $this->excluded_names = $excluded_names;
+            $this->notNames = $notNames;
         }
 
         /**
@@ -119,8 +120,8 @@ namespace SebastianBergmann\FinderFacade
                 $finder->name($name);
             }
 
-            foreach ($this->excluded_names as $excluded_name) {
-                $finder->notName($excluded_name);
+            foreach ($this->notNames as $notName) {
+                $finder->notName($notName);
             }
 
             if ($iterate) {
@@ -140,10 +141,10 @@ namespace SebastianBergmann\FinderFacade
             $configuration = new Configuration($file);
             $configuration = $configuration->parse();
 
-            $this->items          = $configuration['items'];
-            $this->excludes       = $configuration['excludes'];
-            $this->names          = $configuration['names'];
-            $this->excluded_names = $configuration['excluded_names'];
+            $this->items    = $configuration['items'];
+            $this->excludes = $configuration['excludes'];
+            $this->names    = $configuration['names'];
+            $this->notNames = $configuration['notNames'];
         }
     }
 }

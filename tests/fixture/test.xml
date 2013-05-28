@@ -5,5 +5,5 @@
  </include>
  <exclude>bar</exclude>
  <name>*.php</name>
- <excluded_name>*.fail.php</excluded_name>
+ <notName>*.fail.php</notName>
 </fileset>
