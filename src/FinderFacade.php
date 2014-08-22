@@ -83,13 +83,15 @@ namespace SebastianBergmann\FinderFacade
          * @param array $excludes
          * @param array $names
          * @param array $notNames
+         * @param array $regexpsExclude
          */
-        public function __construct(array $items = array(), array $excludes = array(), array $names = array(), array $notNames = array())
+        public function __construct(array $items = array(), array $excludes = array(), array $names = array(), array $notNames = array(), array $regexpsExclude = array())
         {
             $this->items    = $items;
             $this->excludes = $excludes;
             $this->names    = $names;
             $this->notNames = $notNames;
+            $this->regexpsExclude = $regexpsExclude;
         }
 
         /**
@@ -124,6 +126,10 @@ namespace SebastianBergmann\FinderFacade
                 $finder->notName($notName);
             }
 
+            foreach ($this->regexpsExclude as $regexpExclude) {
+                $finder->notPath($regexpExclude);
+            }
+
             if ($iterate) {
                 foreach ($finder as $file) {
                     $files[] = $file->getRealpath();
@@ -145,6 +151,7 @@ namespace SebastianBergmann\FinderFacade
             $this->excludes = $configuration['excludes'];
             $this->names    = $configuration['names'];
             $this->notNames = $configuration['notNames'];
+            $this->regexpsExclude = $configuration['regexpsExclude'];
         }
     }
 }
