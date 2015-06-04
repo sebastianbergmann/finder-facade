@@ -74,6 +74,8 @@ class FinderFacade
         $finder  = new Finder;
         $iterate = false;
 
+        $finder->ignoreUnreadableDirs();
+
         foreach ($this->items as $item) {
             if (!is_file($item)) {
                 $finder->in($item);
