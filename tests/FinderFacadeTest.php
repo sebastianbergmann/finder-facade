@@ -34,8 +34,8 @@ class FinderFacadeTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             array(
-            $this->fixtureDir . 'bar.phtml',
-            $this->fixtureDir . 'foo' . DIRECTORY_SEPARATOR . 'bar.php'
+                $this->fixtureDir . 'bar.phtml',
+                $this->fixtureDir . 'foo' . DIRECTORY_SEPARATOR . 'bar.php'
             ),
             $facade->findFiles()
         );
@@ -51,8 +51,8 @@ class FinderFacadeTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             array(
-            $this->fixtureDir . 'bar.phtml',
-            $this->fixtureDir . 'foo' . DIRECTORY_SEPARATOR . 'bar.php'
+                $this->fixtureDir . 'bar.phtml',
+                $this->fixtureDir . 'foo' . DIRECTORY_SEPARATOR . 'bar.php'
             ),
             $facade->findFiles()
         );

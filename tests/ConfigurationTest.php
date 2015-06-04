@@ -30,13 +30,14 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             array(
-            'items' => array(
-              $this->fixtureDir . 'foo',
-              $this->fixtureDir . 'bar.phtml'
-            ),
-            'excludes' => array('bar'),
-            'names'    => array('*.php'),
-            'notNames' => array('*.fail.php'),
+                'items' => array(
+                    $this->fixtureDir . 'foo',
+                    $this->fixtureDir . 'bar.phtml'
+                ),
+                'excludes' => array('bar'),
+                'names'    => array('*.php'),
+                'notNames' => array('*.fail.php'),
+                'regularExpressionExcludes' => array()
             ),
             $configuration->parse()
         );

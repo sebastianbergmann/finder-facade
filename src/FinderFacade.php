@@ -45,17 +45,24 @@ class FinderFacade
     protected $notNames = array();
 
     /**
+     * @var array
+     */
+    protected $regularExpressionsExcludes = array();
+
+    /**
      * @param array $items
      * @param array $excludes
      * @param array $names
      * @param array $notNames
+     * @param array $regularExpressionsExcludes
      */
-    public function __construct(array $items = array(), array $excludes = array(), array $names = array(), array $notNames = array())
+    public function __construct(array $items = array(), array $excludes = array(), array $names = array(), array $notNames = array(), $regularExpressionsExcludes = array())
     {
-        $this->items    = $items;
-        $this->excludes = $excludes;
-        $this->names    = $names;
-        $this->notNames = $notNames;
+        $this->items                      = $items;
+        $this->excludes                   = $excludes;
+        $this->names                      = $names;
+        $this->notNames                   = $notNames;
+        $this->regularExpressionsExcludes = $regularExpressionsExcludes;
     }
 
     /**
@@ -88,6 +95,10 @@ class FinderFacade
             $finder->notName($notName);
         }
 
+        foreach ($this->regularExpressionsExcludes as $regularExpressionExclude) {
+            $finder->notPath($regularExpressionExclude);
+        }
+
         if ($iterate) {
             foreach ($finder as $file) {
                 $files[] = $file->getRealpath();
@@ -105,9 +116,10 @@ class FinderFacade
         $configuration = new Configuration($file);
         $configuration = $configuration->parse();
 
-        $this->items    = $configuration['items'];
-        $this->excludes = $configuration['excludes'];
-        $this->names    = $configuration['names'];
-        $this->notNames = $configuration['notNames'];
+        $this->items                      = $configuration['items'];
+        $this->excludes                   = $configuration['excludes'];
+        $this->names                      = $configuration['names'];
+        $this->notNames                   = $configuration['notNames'];
+        $this->regularExpressionsExcludes = $configuration['regularExpressionExcludes'];
     }
 }

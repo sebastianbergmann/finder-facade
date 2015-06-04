@@ -60,7 +60,11 @@ class Configuration
     public function parse($xpath = '')
     {
         $result = array(
-          'items' => array(), 'excludes' => array(), 'names' => array(), 'notNames' => array()
+            'items'                     => array(),
+            'excludes'                  => array(),
+            'names'                     => array(),
+            'notNames'                  => array(),
+            'regularExpressionExcludes' => array()
         );
 
         foreach ($this->xml->getDOMXPath()->query($xpath . 'include/directory') as $item) {
@@ -79,8 +83,12 @@ class Configuration
             $result['names'][] = $name->nodeValue;
         }
 
-        foreach ($this->xml->getDOMXPath()->query($xpath . 'notName') as $name) {
-            $result['notNames'][] = $name->nodeValue;
+        foreach ($this->xml->getDOMXPath()->query($xpath . 'notName') as $notName) {
+            $result['notNames'][] = $notName->nodeValue;
+        }
+
+        foreach ($this->xml->getDOMXPath()->query($xpath . 'regularExpressionExcludes') as $regularExpressionExclude) {
+            $result['regularExpressionExcludes'][] = $regularExpressionExclude->nodeValue;
         }
 
         return $result;
@@ -93,9 +101,8 @@ class Configuration
     protected function toAbsolutePath($path)
     {
         // Check whether the path is already absolute.
-        if ($path[0] === '/' || $path[0] === '\\' ||
-            (strlen($path) > 3 && ctype_alpha($path[0]) &&
-             $path[1] === ':' && ($path[2] === '\\' || $path[2] === '/'))) {
+        if ($path[0] === '/' || $path[0] === '\\' || (strlen($path) > 3 && ctype_alpha($path[0]) &&
+            $path[1] === ':' && ($path[2] === '\\' || $path[2] === '/'))) {
             return $path;
         }
 
