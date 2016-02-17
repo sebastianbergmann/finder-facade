@@ -34,9 +34,9 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                     $this->fixtureDir . 'foo',
                     $this->fixtureDir . 'bar.phtml'
                 ),
-                'excludes' => array('bar'),
-                'names'    => array('*.php'),
-                'notNames' => array('*.fail.php'),
+                'excludes'                  => array('bar'),
+                'names'                     => array('*.php'),
+                'notNames'                  => array('*.fail.php'),
                 'regularExpressionExcludes' => array()
             ),
             $configuration->parse()

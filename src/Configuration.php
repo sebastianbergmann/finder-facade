@@ -24,7 +24,7 @@ use TheSeer\fDOM\fDOMDocument;
  * </fileset>
  * </code>
  *
- * @since     Class available since Release 1.0.0
+ * @since Class available since Release 1.0.0
  */
 class Configuration
 {
@@ -50,7 +50,8 @@ class Configuration
     }
 
     /**
-     * @param  string $xpath
+     * @param string $xpath
+     *
      * @return array
      */
     public function parse($xpath = '')
@@ -91,7 +92,8 @@ class Configuration
     }
 
     /**
-     * @param  string $path
+     * @param string $path
+     *
      * @return string
      */
     protected function toAbsolutePath($path)
