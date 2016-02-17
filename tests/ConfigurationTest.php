@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of the Comparator package.
+ * This file is part of the Finder Facade package.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
