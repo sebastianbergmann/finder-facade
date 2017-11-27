@@ -10,7 +10,9 @@
 
 namespace SebastianBergmann\FinderFacade;
 
-class ConfigurationTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class ConfigurationTest extends TestCase
 {
     protected $fixtureDir;
 
