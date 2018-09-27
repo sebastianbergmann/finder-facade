@@ -1,68 +1,45 @@
-<?php
+<?php declare(strict_types=1);
 /*
- * This file is part of the Finder Facade package.
+ * This file is part of the finder-facade package.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\FinderFacade;
 
 use TheSeer\fDOM\fDOMDocument;
 
-/**
- * <code>
- * <fileset>
- *   <include>
- *    <directory>/path/to/directory</directory>
- *    <file>/path/to/file</file>
- *   </include>
- *   <exclude>/path/to/directory</exclude>
- *   <name>*.php</name>
- * </fileset>
- * </code>
- *
- * @since Class available since Release 1.0.0
- */
-class Configuration
+final class Configuration
 {
     /**
      * @var string
      */
-    protected $basePath;
+    private $basePath;
 
     /**
      * @var fDOMDocument
      */
-    protected $xml;
+    private $xml;
 
-    /**
-     * @param string $file
-     */
-    public function __construct($file)
+    public function __construct(string $file)
     {
-        $this->basePath = dirname($file);
+        $this->basePath = \dirname($file);
 
         $this->xml = new fDOMDocument;
         $this->xml->load($file);
     }
 
-    /**
-     * @param string $xpath
-     *
-     * @return array
-     */
-    public function parse($xpath = '')
+    public function parse(string $xpath = ''): array
     {
-        $result = array(
-            'items'                     => array(),
-            'excludes'                  => array(),
-            'names'                     => array(),
-            'notNames'                  => array(),
-            'regularExpressionExcludes' => array()
-        );
+        $result = [
+            'items'                     => [],
+            'excludes'                  => [],
+            'names'                     => [],
+            'notNames'                  => [],
+            'regularExpressionExcludes' => [],
+        ];
 
         foreach ($this->xml->getDOMXPath()->query($xpath . 'include/directory') as $item) {
             $result['items'][] = $this->toAbsolutePath($item->nodeValue);
@@ -91,24 +68,19 @@ class Configuration
         return $result;
     }
 
-    /**
-     * @param string $path
-     *
-     * @return string
-     */
-    protected function toAbsolutePath($path)
+    private function toAbsolutePath(string $path): string
     {
         // Check whether the path is already absolute.
-        if ($path[0] === '/' || $path[0] === '\\' || (strlen($path) > 3 && ctype_alpha($path[0]) &&
+        if ($path[0] === '/' || $path[0] === '\\' || (\strlen($path) > 3 && \ctype_alpha($path[0]) &&
             $path[1] === ':' && ($path[2] === '\\' || $path[2] === '/'))) {
             return $path;
         }
 
         // Check whether a stream is used.
-        if (strpos($path, '://') !== false) {
+        if (\strpos($path, '://') !== false) {
             return $path;
         }
 
-        return $this->basePath . DIRECTORY_SEPARATOR . $path;
+        return $this->basePath . \DIRECTORY_SEPARATOR . $path;
     }
 }

@@ -1,46 +1,46 @@
-<?php
+<?php declare(strict_types=1);
 /*
- * This file is part of the Finder Facade package.
+ * This file is part of the finder-facade package.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\FinderFacade;
 
 use PHPUnit\Framework\TestCase;
 
-class ConfigurationTest extends TestCase
+/**
+ * @covers \SebastianBergmann\FinderFacade\Configuration
+ */
+final class ConfigurationTest extends TestCase
 {
-    protected $fixtureDir;
+    /**
+     * @var string
+     */
+    private $fixtureDir;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->fixtureDir = __DIR__ . DIRECTORY_SEPARATOR . 'fixture' . DIRECTORY_SEPARATOR;
+        $this->fixtureDir = __DIR__ . \DIRECTORY_SEPARATOR . 'fixture' . \DIRECTORY_SEPARATOR;
     }
 
-    /**
-     * @covers SebastianBergmann\FinderFacade\Configuration::__construct
-     * @covers SebastianBergmann\FinderFacade\Configuration::parse
-     * @covers SebastianBergmann\FinderFacade\Configuration::toAbsolutePath
-     */
-    public function testXmlFileCanBeParsed()
+    public function testXmlFileCanBeParsed(): void
     {
         $configuration = new Configuration($this->fixtureDir . 'test.xml');
 
         $this->assertEquals(
-            array(
-                'items' => array(
+            [
+                'items' => [
                     $this->fixtureDir . 'foo',
-                    $this->fixtureDir . 'bar.phtml'
-                ),
-                'excludes'                  => array('bar'),
-                'names'                     => array('*.php'),
-                'notNames'                  => array('*.fail.php'),
-                'regularExpressionExcludes' => array()
-            ),
+                    $this->fixtureDir . 'bar.phtml',
+                ],
+                'excludes'                  => ['bar'],
+                'names'                     => ['*.php'],
+                'notNames'                  => ['*.fail.php'],
+                'regularExpressionExcludes' => [],
+            ],
             $configuration->parse()
         );
     }
