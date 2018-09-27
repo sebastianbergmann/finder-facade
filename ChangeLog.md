@@ -4,6 +4,10 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ## [2.0.0] - 2018-MM-DD
 
+### Changed
+
+* Files are now sorted by name
+
 ### Removed
 
 * This component now requires PHP 7.1 (or later)

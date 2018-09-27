@@ -57,6 +57,7 @@ final class FinderFacade
         $iterate = false;
 
         $finder->ignoreUnreadableDirs();
+        $finder->sortByName();
 
         foreach ($this->items as $item) {
             if (!\is_file($item)) {
