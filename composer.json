@@ -15,13 +15,14 @@
     },
     "prefer-stable": true,
     "require": {
-        "php": "^7.1",
+        "php": "^7.3",
+        "ext-ctype": "*",
         "theseer/fdomdocument": "^1.6",
         "symfony/finder": "^4.1"
     },
     "config": {
         "platform": {
-            "php": "7.1.3"
+            "php": "7.3.0"
         },
         "optimize-autoloader": true,
         "sort-packages": true
