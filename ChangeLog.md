@@ -10,6 +10,6 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ### Removed
 
-* This component now requires PHP 7.3 (or later)
+* Removed support for PHP versions older than PHP 7.3
 
 [2.0.0]: https://github.com/sebastianbergmann/diff/compare/1.2.2...2.0.0
