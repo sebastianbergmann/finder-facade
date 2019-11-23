@@ -18,7 +18,7 @@
         "php": "^7.3",
         "ext-ctype": "*",
         "theseer/fdomdocument": "^1.6",
-        "symfony/finder": "^4.1"
+        "symfony/finder": "^4.1|^5.0"
     },
     "config": {
         "platform": {
